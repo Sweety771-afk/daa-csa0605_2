@@ -1,0 +1,22 @@
+def find_max(nums):
+    return max(nums)
+
+# Example usage:
+nums = [4, 2, 9, 6, 5]
+print(find_max(nums))  # Output: 9
+
+def find_min(nums):
+    return min(nums)
+
+# Example usage:
+nums = [4, 2, 9, 6, 5]
+print(find_min(nums))  # Output: 2
+
+
+Finding Both Maximum and Minimum Values
+
+
+def find_max_min(nums):
+    return max(nums), min(nums)
+
+
