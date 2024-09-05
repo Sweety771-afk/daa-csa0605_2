@@ -1,0 +1,19 @@
+def maxSubarraySumCircular(nums):
+    n = len(nums)
+    max_sum = float('-inf')
+    min_sum = float('inf')
+    current_max = 0
+    current_min = 0
+    total_sum = 0
+    
+    for num in nums:
+        current_max = max(num, current_max + num)
+        max_sum = max(max_sum, current_max)
+        current_min = min(num, current_min + num)
+        min_sum = min(min_sum, current_min)
+        total_sum += num
+    
+    if total_sum == min_sum:
+        return max_sum
+    else:
+        return max(max_sum, total_sum - min_sum)
