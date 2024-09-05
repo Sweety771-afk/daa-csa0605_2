@@ -1,0 +1,24 @@
+def karatsuba(x, y):
+    # Base case: single-digit numbers
+    if x < 10 or y < 10:
+        return x * y
+
+    # Find the maximum number of digits
+    max_digits = max(len(str(x)), len(str(y)))
+
+    # Split the numbers into two halves
+    n = max_digits // 2
+    a = x // (10 ** n)
+    b = x % (10 ** n)
+    c = y // (10 ** n)
+    d = y % (10 ** n)
+
+    # Recursive calls
+    ac = karatsuba(a, c)
+    bd = karatsuba(b, d)
+    ad_bc = karatsuba(a + b, c + d) - ac - bd
+
+    # Combine the results
+    product = ac * (10 ** (2 * n)) + (ad_bc * (10 ** n)) + bd
+
+    return product
