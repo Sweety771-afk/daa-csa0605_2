@@ -1,0 +1,13 @@
+def minimumValue(s):
+    count = {}
+    res = 0
+    for char in reversed(s):
+        if char == '?':
+            for c in 'abcdefghijklmnopqrstuvwxyz':
+                if c not in count:
+                    char = c
+                    break
+        res += count.get(char, 0)
+        count[char] = count.get(char, 0) + 1
+    return res
+
