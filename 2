@@ -1,0 +1,12 @@
+def checkIfCanBreak(s1, s2):
+    n = len(s1)
+    can_break_s2 = True
+    can_break_s1 = True
+    for i in range(n):
+        if s1[i] < s2[i]:
+            can_break_s2 = False
+        if s1[i] > s2[i]:
+            can_break_s1 = False
+    return can_break_s1 or can_break_s2
+
+
