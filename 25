@@ -1,0 +1,28 @@
+class TreeNode:
+    def __init__(self, value=0, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
+
+def isValidSequence(root, arr):
+    def dfs(node, index):
+        if not node:
+            return False
+        if index == len(arr) or node.value != arr[index]:
+            return False
+        if not node.left and not node.right:  # Leaf node
+            return index == len(arr) - 1
+        return dfs(node.left, index + 1) or dfs(node.right, index + 1)
+
+    return dfs(root, 0)
+
+# Example usage:
+# Constructing a binary tree
+#        0
+#       / \
+#      1   0
+#     / \   \
+#    0   1   0
+root = TreeNode(0, TreeNode(1, TreeNode(0), TreeNode(1)), TreeNode(0, None, TreeNode(0)))
+arr = [0, 1, 0]
+print(isValidSequence(root, arr))  # Output: True
