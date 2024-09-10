@@ -1,0 +1,14 @@
+class Solution:
+    def leftMostColumnWithOne(self, binaryMatrix):
+        rows, cols = binaryMatrix.dimensions()
+        leftmost_index = -1
+        row, col = 0, cols - 1
+        
+        while row < rows and col >= 0:
+            if binaryMatrix.get(row, col) == 1:
+                leftmost_index = col
+                col -= 1  # Move left to find an earlier column with a 1
+            else:
+                row += 1  # Move down to find a 1 in the next row
+        
+        return leftmost_index
