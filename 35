@@ -1,0 +1,27 @@
+def find_first_and_last(nums, target):
+    def find_position(is_first):
+        left, right = 0, len(nums) - 1
+        position = -1
+        while left <= right:
+            mid = (left + right) // 2
+            if nums[mid] == target:
+                position = mid
+                if is_first:
+                    right = mid - 1  # Search left half
+                else:
+                    left = mid + 1   # Search right half
+            elif nums[mid] < target:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return position
+
+    first = find_position(True)
+    last = find_position(False)
+    
+    return [first, last]
+
+# Example usage
+nums = [5, 7, 7, 8, 8, 10]
+target = 8
+print(find_first_and_last(nums, target))  # Output: [3, 4]
