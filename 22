@@ -1,0 +1,18 @@
+def string_shifts(s, shift):
+    total_shift = 0
+    
+    # Calculate the net shift
+    for direction, amount in shift:
+        total_shift += amount if direction == 1 else -amount
+    
+    # Normalize the total shift
+    total_shift %= len(s)
+    
+    # Perform the shift
+    return s[-total_shift:] + s[:-total_shift] if total_shift else s
+
+# Example usage
+s = "abc"
+shift = [[0, 1], [1, 2]]
+result = string_shifts(s, shift)
+print(result)  # Output: "cab"
