@@ -1,0 +1,10 @@
+class WordFilter:
+    def __init__(self, words):
+        self.words = words
+
+    def f(self, pref, suff):
+        max_index = -1
+        for index, word in enumerate(self.words):
+            if word.startswith(pref) and word.endswith(suff):
+                max_index = max(max_index, index)
+        return max_index
