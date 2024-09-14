@@ -1,0 +1,12 @@
+def find_substrings(words):
+    substrings = set()
+    for i in range(len(words)):
+        for j in range(len(words)):
+            if i != j and words[i] in words[j]:
+                substrings.add(words[i])
+    return list(substrings)
+
+# Example usage
+words = ["mass", "as", "hero", "superhero", "heroic"]
+result = find_substrings(words)
+print(result)  # Output could be ['as', 'hero']
