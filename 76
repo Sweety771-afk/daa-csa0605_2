@@ -1,0 +1,34 @@
+def is_hamiltonian_cycle(graph, path, pos):
+    if pos == len(graph):
+        return path[0] in graph[path[-1]]  # Check if last vertex connects to the first
+
+    for vertex in range(1, len(graph)):
+        if is_safe(vertex, graph, path, pos):
+            path[pos] = vertex
+            if is_hamiltonian_cycle(graph, path, pos + 1):
+                return True
+            path[pos] = -1  # Backtrack
+    return False
+
+def is_safe(vertex, graph, path, pos):
+    if vertex not in graph[path[pos - 1]]:
+        return False
+    if vertex in path:
+        return False
+    return True
+
+def hamiltonian_cycle(edges, n):
+    graph = {i: [] for i in range(n)}
+    for u, v in edges:
+        graph[u].append(v)
+        graph[v].append(u)
+
+    path = [-1] * n
+    path[0] = 0  # Start from the first vertex
+
+    return is_hamiltonian_cycle(graph, path, 1)
+
+# Example usage
+edges = [(0, 1), (1, 2), (2, 0), (0, 3), (3, 1)]
+n = 4
+print(hamiltonian_cycle(edges, n))  # Output: True or False
