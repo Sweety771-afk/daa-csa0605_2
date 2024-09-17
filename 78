@@ -1,0 +1,16 @@
+def generate_subsets_with_element(nums, element):
+    def backtrack(start, path):
+        if element in path:
+            result.append(path)
+        for i in range(start, len(nums)):
+            backtrack(i + 1, path + [nums[i]])
+
+    result = []
+    backtrack(0, [])
+    return [subset for subset in result if element in subset]
+
+# Example usage
+unique_integers = [1, 2, 3, 4]
+element_to_include = 3
+subsets_with_3 = generate_subsets_with_element(unique_integers, element_to_include)
+print(subsets_with_3)
