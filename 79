@@ -1,0 +1,24 @@
+from itertools import combinations
+
+def subset_sums(arr):
+    """Generate all possible subset sums of the array."""
+    sums = set()
+    for r in range(len(arr) + 1):
+        for combo in combinations(arr, r):
+            sums.add(sum(combo))
+    return sorted(sums)
+
+def closest_subset_sum(arr, target):
+    """Find the subset whose sum is closest to the target."""
+    mid = len(arr) // 2
+    left_sums = subset_sums(arr[:mid])
+    right_sums = subset_sums(arr[mid:])
+    
+    closest_sum = float('inf')
+    
+    for left in left_sums:
+        # Binary search for the closest right sum
+        low, high = 0, len(right_sums) - 1
+        while low <= high:
+            mid = (low + high) // 2
+            current_sum = left +
