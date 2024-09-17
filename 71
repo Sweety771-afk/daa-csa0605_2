@@ -1,0 +1,36 @@
+import numpy as np
+
+# Initialize the distance matrix
+cities = {
+    'A': 0,
+    'B': 1,
+    'C': 2,
+    'D': 3
+}
+
+# Distance matrix (infinity represents no direct path)
+distance_matrix = np.array([
+    [0, 3, np.inf, 7],
+    [8, 0, 2, np.inf],
+    [5, np.inf, 0, 1],
+    [2, np.inf, np.inf, 0]
+])
+
+# Display the initial distance matrix
+print("Initial Distance Matrix:")
+print(distance_matrix)
+
+# Floyd-Warshall Algorithm
+num_cities = len(distance_matrix)
+for k in range(num_cities):
+    for i in range(num_cities):
+        for j in range(num_cities):
+            distance_matrix[i][j] = min(distance_matrix[i][j], distance_matrix[i][k] + distance_matrix[k][j])
+
+# Display the final distance matrix
+print("\nFinal Distance Matrix after applying Floyd's Algorithm:")
+print(distance_matrix)
+
+# Identify and print the shortest path from A to D
+shortest_path = distance_matrix[cities['A'], cities['D']]
+print(f"\nThe shortest path from A to D is: {shortest_path}")
