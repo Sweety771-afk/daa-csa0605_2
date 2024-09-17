@@ -1,0 +1,18 @@
+def rob_linear(houses):
+    prev, curr = 0, 0
+    for money in houses:
+        prev, curr = curr, max(prev + money, curr)
+    return curr
+
+def rob_circular(houses):
+    if not houses:
+        return 0
+    if len(houses) == 1:
+        return houses[0]
+    
+    return max(rob_linear(houses[:-1]), rob_linear(houses[1:]))
+
+# Example usage
+houses = [2, 3, 2]
+max_money = rob_circular(houses)
+print(f"Maximum money that can be robbed: {max_money}")
