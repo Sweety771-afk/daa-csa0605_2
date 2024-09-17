@@ -1,0 +1,20 @@
+def subsets_with_dup(S):
+    S.sort()  # Sort the set to ensure lexicographical order
+    result = []
+    subset = []
+
+    def backtrack(start):
+        result.append(subset[:])  # Append a copy of the current subset
+        for i in range(start, len(S)):
+            if i > start and S[i] == S[i - 1]:  # Skip duplicates
+                continue
+            subset.append(S[i])
+            backtrack(i + 1)  # Move to the next element
+            subset.pop()  # Backtrack
+
+    backtrack(0)
+    return result
+
+# Example usage
+S = [1, 2, 2]
+print(subsets_with_dup(S))
