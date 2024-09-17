@@ -1,0 +1,23 @@
+from itertools import combinations
+
+def subset_sum(arr, target):
+    n = len(arr)
+    mid = n // 2
+    
+    # Generate all possible subset sums for the first half
+    left_sums = {sum(comb) for i in range(mid + 1) for comb in combinations(arr[:mid], i)}
+    
+    # Generate all possible subset sums for the second half
+    right_sums = {sum(comb) for i in range(n - mid + 1) for comb in combinations(arr[mid:], i)}
+    
+    # Check if there exists a pair of sums that equals the target
+    for left in left_sums:
+        if (target - left) in right_sums:
+            return True
+            
+    return False
+
+# Example usage
+arr = [3, 34, 4, 12, 5, 2]
+E = 9
+print(subset_sum(arr, E))  # Output: True
